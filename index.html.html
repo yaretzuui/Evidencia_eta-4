@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Alumnos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Consulta de Alumnos</h2>
+    <?php if ($result->num_rows > 0): ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id_matricula</th>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>edad</th>
+                    <th>telefono</th>
+                    <th>correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row["id_matricula"]; ?></td>
+                        <td><?php echo $row["nombre"]; ?></td>
+                        <td><?php echo $row["apellido"]; ?></td>
+                        <td><?php echo $row["edad"]; ?></td>
+                        <td><?php echo $row["telefono"]; ?></td>
+                        <td><?php echo $row["correo"]; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>No se encontraron registros.</p>
+    <?php endif; ?>
+</div>
+</body>
+</html>
+
+<?php
+/// Paso 3: Cerrar conexión
+$conn->close();
+?>
